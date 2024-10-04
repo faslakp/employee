@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="text-center">employee list</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                {%if messages%}
+                 {%for m in messages%}
+                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>{{m}}</strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                 {%endfor%}
+                 
+                {%endif%}
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+
+
+
+
+
+   <div class="container">
+    <div class="row mt-5">
+        <div class="col-1"></div>
+        <div class="col-10 border p-3">
+
+            <div class="w-100 d-flex justify-content-end my-3">
+               <a href="{%url 'employee_add'%}" class="btn btn-dark">add</a>
+            </div>
+
+
+            <table class="table table-striped">
+                <tr >
+                    <th >name</th>
+                    <th>position</th>
+                    <th>office</th>
+                    <th>age</th>
+                    <th>start_date</th>
+                    <th>salary</th>
+                    <th>action</th>
+                </tr>
+
+                {%for m in employee%}
+                <tr>
+                    <td>{{m.name}}</td>
+                    <td>{{m.position}}</td>
+                    <td>{{m.office}}</td>
+                    <td>{{m.age}}</td>
+                    <td>{{m.start_date}}</td>
+                    <td>{{m.salary}}</td>
+                    <td>
+                        <a href="{%url 'employee-details' m.id%}" class="btn btn-primary">details</a>
+                        <a href="{%url 'employee-delete' m.id%}"  class="btn btn-primary">remove</a>
+                        <a href="{%url 'employee-update' m.id%}"  class="btn btn-primary">change</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+   </div>
+</body>
+</html>
